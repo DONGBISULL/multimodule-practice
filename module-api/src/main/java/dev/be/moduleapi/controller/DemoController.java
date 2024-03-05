@@ -21,4 +21,8 @@ public class DemoController {
         return demeService.find();
     }
 
+    @GetMapping("/exception")
+    public String exception() {
+        return demeService.exception();
+    }
 }
