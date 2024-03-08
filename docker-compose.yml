@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: mysql-sample-container
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: test_database
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_USER: root
+      MYSQL_PASSWORD: test
+    ports:
+      - "3306:3306"
+    volumes:
+      - /var/lib/mysql
