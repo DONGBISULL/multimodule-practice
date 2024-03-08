@@ -2,6 +2,9 @@ package dev.be.moduleapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * 컴포넌트 스캔
@@ -24,6 +27,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = {
         "dev.be.moduleapi", "dev.be.modulecommon"
 })
+@EntityScan(basePackages = "dev.be.modulecommon.domain")
+@EnableJpaRepositories(basePackages = {"dev.be.modulecommon.repository"})
 public class ModuleApiApplication {
 
     public static void main(String[] args) {
