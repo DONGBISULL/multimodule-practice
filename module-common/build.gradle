@@ -10,6 +10,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     sourceCompatibility = '11'
+    targetCompatibility = '11'
 }
 
 configurations {
@@ -37,3 +38,32 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+/*
+* bootJar **.jar 파일 생성
+* bootJar applcation 실행 시 필요한 dependency, class , resource 포함
+* -> 실행 가능 jar 생성
+* common 참조를 위한 module 이므로 jar 필요X
+*  */
+tasks.bootJar {
+    enabled = false // main class 없으므로 이 옵션 없이 빌드 시 오류 발생
+}
+
+/*
+* jar true 로 주면 plain.jar 라는 텍스트 붙어서 생성
+* plain 이 붙은 경우 dependency 가지고 있지 않음!!!
+*
+* dependency 를 가지고 있지 않다
+* => 클래스와 리소스만을 포함함
+* => 서버 실행 시킬 수 없다
+*
+* 실행이 목적이 아닌 jar 는 필요하므로 jar enabled = true 옵션 주는것!!
+*/
+tasks.jar {
+    enabled = true
+}
+
+// stacktrace 빌드 시 로깅 예외 발생 시 예외 캐치하도록 보여달라
+// -x test 테스트 코드 작성 : gradle 에서 테스트 코드 돌렸을 때 실패 시 gradle 빌드도 실패로 뜸!!
+// 테스트 코드를 체크하는 단계 스킵을 위해 필요한 옵션
+// ./gradlew :module-api:buildNeeded --stacktrace --info --refresh-dependencies -x test
