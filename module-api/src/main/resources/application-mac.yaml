@@ -1,4 +1,4 @@
-profile-name: window
+profile-name: mac
 spring:
   main:
     allow-bean-definition-overriding: true
@@ -16,4 +16,3 @@ spring:
       hibernate:
         format_sql: true
         use_sql_comments: true
-
